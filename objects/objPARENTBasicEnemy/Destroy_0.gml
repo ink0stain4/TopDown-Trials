@@ -1,0 +1,1 @@
+dropSmallEXP(random_range(1, 2) * expDropMultiplier)

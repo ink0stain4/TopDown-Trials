@@ -1,0 +1,1 @@
+showEXPBar(false)
