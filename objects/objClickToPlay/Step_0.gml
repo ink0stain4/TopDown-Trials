@@ -8,8 +8,5 @@ if image_alpha <= 1
 	
 if mouse_check_button(mb_left)
 {
-	loadGame()
+	room_goto(rmStartMenu)
 }
-
-
-

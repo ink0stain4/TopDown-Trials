@@ -143,14 +143,14 @@ function loadGame(){
 		global.playerLevel		= ini_read_real("Stats", "Level", 0);
 		global.playerXP			= ini_read_real("Stats", "EXP", 0);
 		global.expRequiredLvlUP = ini_read_real("Stats", "NextLvlUp", 100);
-		global.playerStrength	= ini_read_real("Stats", "Strength", 25);
+		global.playerStrength	= ini_read_real("Stats", "Strength", 5);
 		global.playerSpeed	= ini_read_real("Stats", "Speed", 1);
 		global.playerKnockback = ini_read_real("Stats", "Knockback", 3);
 	
 		playerSpawnX = ini_read_real("Coordinates", "x", 0);
 		playerSpawnY = ini_read_real("Coordinates", "y", 0);
 	
-		targetRoom = (ini_read_real("Room", "Room", room))
+		targetRoom = (ini_read_real("Room", "Room", Room1))
 
 		ini_close()
 		
@@ -165,7 +165,7 @@ function loadGame(){
 		global.playerLevel = 0
 		global.playerXP = 0
 		global.expRequiredLvlUP = 100
-		global.playerStrength = 25
+		global.playerStrength = 5
 		global.playerSpeed = 1
 		global.playerKnockback = 3
 		
@@ -174,7 +174,7 @@ function loadGame(){
 		
 		instance_create_layer(playerSpawnX, playerSpawnY, "Instances", objPlayer)
 		roomSetup()
-		room_goto_next()
+		room_goto(Room1)
 	}
 }
 

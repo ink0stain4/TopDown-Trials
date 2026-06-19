@@ -22,5 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"yummy2.ogg",
-  "volume":0.68,
+  "volume":0.83,
 }
