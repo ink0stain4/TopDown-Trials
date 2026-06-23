@@ -7,11 +7,11 @@ if ((iFrames) && alarm[2] <= 0)
 {
 	alarm[2] = 5;
 	shader_set(shdHitFlash);
-	draw_self();
+	draw_sprite_ext(sprite_index, -1, x, y, facing, 1, 0, c_white, 1)
 	shader_reset();
 
 } else
-	draw_self()
+	draw_sprite_ext(sprite_index, -1, x, y, facing, 1, 0, c_white, 1)
 
 
 

@@ -1,6 +1,5 @@
 function playerStateLibrary()
 {
-	
 	switch (state)
 	{
 		
@@ -8,11 +7,13 @@ function playerStateLibrary()
 		sprite_index = sprPlayer;
 		break;
 
-
 		case PlayerState.WALKING:
 		sprite_index = sprPlayerWalk;
 		break;
 		
+		case PlayerState.ROLL:
+		sprite_index = sprPlayerRoll;
+		break;
 		
 		
 	}
@@ -30,7 +31,7 @@ function checkXP()
 	global.playerXP = bankedXP	
 	global.expRequiredLvlUP = round(63 + (global.playerLevel * 20))
 
-	audio_play_sound(choose(yummy1, yummy2), 1, false, 3, 0, random_range(0.6, 1.4))
+	audio_play_sound(choose(sndYummy1, sndYummy2), 1, false, 3, 0, random_range(0.6, 1.4))
 	
 	show_debug_message(string(global.playerXP))
 	show_debug_message(string(global.playerLevel))
@@ -107,7 +108,7 @@ function WeaponDictionary()
 		{
 			//show_debug_message("MELEE")
 			// 1. Reduce attack cooldown timer frame by frame
-			if (attackTimer > 0)
+			if (attackTimer > 0) && (state != PlayerState.ROLL)
 			{
 			    attackTimer--;
 			}
@@ -124,6 +125,7 @@ function WeaponDictionary()
     
 				// Spawn the attack hitbox object
 				var myAttack = instance_create_layer(x, y, "Attacks", objBasicAttackHB);
+				audio_play_sound(sndSwing, 1, false, 1, 0, random_range(1, 1.2))
     
 
 				myAttack.image_angle = attackDirection;
@@ -135,7 +137,7 @@ function WeaponDictionary()
 		case Weapon.RANGED:
 		{
 			// tick cd timer
-			if (attackTimer > 0)
+			if (attackTimer > 0) && (state != PlayerState.ROLL)
 			{
 			    attackTimer--;
 			}

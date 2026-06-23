@@ -1,18 +1,18 @@
 {
   "$GMSound":"v2",
-  "%Name":"yummy2",
+  "%Name":"sndSwing",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"SFX",
+    "path":"audiogroups/SFX",
   },
   "bitDepth":1,
   "channelFormat":0,
   "compression":0,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":1.010068,
+  "duration":0.46079364,
   "exportDir":"",
-  "name":"yummy2",
+  "name":"sndSwing",
   "parent":{
     "name":"Sounds",
     "path":"folders/Sounds.yy",
@@ -21,6 +21,6 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"yummy2.ogg",
-  "volume":0.83,
+  "soundFile":"sndSwing.ogg",
+  "volume":0.4,
 }

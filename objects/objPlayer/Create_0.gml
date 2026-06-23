@@ -2,6 +2,7 @@ enum PlayerState
 {
 	IDLE,
 	WALKING,
+	ROLL
 }
 
 
@@ -11,9 +12,13 @@ enum Weapon
 	RANGED
 }
 
+
+
 class = Weapon.MELEE
 
 state = PlayerState.IDLE
+
+facing = 1 // (1 LEFT), (-1 RIGHT)
 
 
 xspd = 0;

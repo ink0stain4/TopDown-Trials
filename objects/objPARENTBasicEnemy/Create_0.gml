@@ -10,7 +10,7 @@ enemyHealth = 20
 invulnerable = false
 hurt = false
 
-expDropMultiplier = 3 // 1 = [1-2] 2 = [2-4]
+expDropMultiplier = 4 // 1 = [1-2] 2 = [2-4]
 
 weight = 1	// property that decides how significantly they are affected by knockback
 			// [1 = light, 5 = heavy]

@@ -1,18 +1,18 @@
 {
   "$GMSound":"v2",
-  "%Name":"yummy1",
+  "%Name":"sndYummy2",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"SFX",
+    "path":"audiogroups/SFX",
   },
   "bitDepth":1,
   "channelFormat":0,
   "compression":0,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":0.54566896,
+  "duration":1.010068,
   "exportDir":"",
-  "name":"yummy1",
+  "name":"sndYummy2",
   "parent":{
     "name":"Sounds",
     "path":"folders/Sounds.yy",
@@ -21,6 +21,6 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"yummy1.ogg",
-  "volume":0.84,
+  "soundFile":"sndYummy2.ogg",
+  "volume":0.56,
 }

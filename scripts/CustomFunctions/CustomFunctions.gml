@@ -12,20 +12,25 @@ function checkFullscreenShortcut()
 	
 
 function playerDie(){
-	game_restart()
-}
+	
+	game_restart();
+};
 
 function takeDamage(_debuff, _amount){
 	
-	if !iFrames
-	{
-		self.debuff = _debuff
-		self.healthCurrent -= _amount
-		self.iFrames = true
-		self.alarm[1] = game_get_speed(gamespeed_fps)
-	}
+	if (state == PlayerState.ROLL)
+	exit;
 	
-}
+	if (!iFrames)
+	{
+		self.debuff = _debuff;
+		self.healthCurrent -= _amount;
+		self.iFrames = true;
+		self.alarm[1] = game_get_speed(gamespeed_fps);
+		audio_play_sound(sndEnemyHurt, 1, false, 1, 0, random_range(0.8, 1.2))
+	};
+	
+};
 
 function healPlayer(_target, _amount){
 	
@@ -42,6 +47,7 @@ function applyDamageFromPlayer(){
 	speed = objPlayer.knockbackPower - weight
 	state = EnemyState.STUNNED
 	instance_create_layer(x, y, "Attacks", objHitEffect)
+
 	
 }
 
@@ -117,10 +123,15 @@ function saveGame(){
 		ini_write_real("Stats", "Knockback", global.playerKnockback);
 		ini_write_real("Stats", "Speed", global.playerSpeed);
 		
+		ini_write_real("Config", "SFX", global.SFX_vol)
+		ini_write_real("Config", "Music", global.Music_vol)
+		
+		
 		ini_write_real("Coordinates", "x", objPlayer.x);
 		ini_write_real("Coordinates", "y", objPlayer.y);
 
 		ini_close()
+		
 }
 
 
@@ -144,8 +155,24 @@ function loadGame(){
 		global.playerXP			= ini_read_real("Stats", "EXP", 0);
 		global.expRequiredLvlUP = ini_read_real("Stats", "NextLvlUp", 100);
 		global.playerStrength	= ini_read_real("Stats", "Strength", 5);
-		global.playerSpeed	= ini_read_real("Stats", "Speed", 1);
-		global.playerKnockback = ini_read_real("Stats", "Knockback", 3);
+		global.playerSpeed		= ini_read_real("Stats", "Speed", 1);
+		global.playerKnockback	= ini_read_real("Stats", "Knockback", 4);
+		
+		global.SFX_vol			= ini_read_real("Config", "SFX", 1);
+		global.Music_vol		= ini_read_real("Config", "Music", 1);
+		
+		if (!audio_group_is_loaded(SFX))
+			{
+				audio_group_load(SFX)
+			}
+		if (!audio_group_is_loaded(Music))
+			{
+				audio_group_load(Music)
+			}
+		
+		audio_group_set_gain(SFX, global.SFX_vol)
+		audio_group_set_gain(Music, global.Music_vol)
+	
 	
 		playerSpawnX = ini_read_real("Coordinates", "x", 0);
 		playerSpawnY = ini_read_real("Coordinates", "y", 0);
@@ -153,6 +180,7 @@ function loadGame(){
 		targetRoom = (ini_read_real("Room", "Room", Room1))
 
 		ini_close()
+		
 		
 		instance_create_layer(playerSpawnX, playerSpawnY, "Instances", objPlayer)
 		roomSetup()
@@ -167,10 +195,26 @@ function loadGame(){
 		global.expRequiredLvlUP = 100
 		global.playerStrength = 5
 		global.playerSpeed = 1
-		global.playerKnockback = 3
+		global.playerKnockback = 4
+		
+		global.SFX_vol = 1
+		global.Music_vol = 1
+		
+		if (!audio_group_is_loaded(SFX))
+		{
+			audio_group_load(SFX)
+		}
+		if (!audio_group_is_loaded(Music))
+		{
+			audio_group_load(Music)
+		}
+
 		
 		playerSpawnX = 480 // Default Location for Game Beginning
 		playerSpawnY = 336 // ^^^
+		
+		audio_group_set_gain(SFX, 0.5)
+		audio_group_set_gain(Music, 0.5)
 		
 		instance_create_layer(playerSpawnX, playerSpawnY, "Instances", objPlayer)
 		roomSetup()

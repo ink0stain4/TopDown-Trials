@@ -1,18 +1,18 @@
 {
   "$GMSound":"v2",
-  "%Name":"sndXPOrb",
+  "%Name":"sndEnemyHurt",
   "audioGroupId":{
     "name":"SFX",
     "path":"audiogroups/SFX",
   },
   "bitDepth":1,
-  "channelFormat":1,
+  "channelFormat":0,
   "compression":0,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":0.4310204,
+  "duration":0.26721087,
   "exportDir":"",
-  "name":"sndXPOrb",
+  "name":"sndEnemyHurt",
   "parent":{
     "name":"Sounds",
     "path":"folders/Sounds.yy",
@@ -21,6 +21,6 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sndXPOrb.ogg",
-  "volume":0.7,
+  "soundFile":"sndEnemyHurt.ogg",
+  "volume":1.0,
 }

@@ -1,6 +1,6 @@
 startUp = true
 
-expWorth = (round(random_range(1, 3)))
+expWorth = (round(random_range(3, 5)))
 
 friction = 0.4
 direction = random_range(0, 359)
