@@ -13,3 +13,16 @@ if objPlayer.staggered // statemachine change this to just a state called "stagg
 	draw_sprite(sprDamageOverlay, 0, healthbarX, healthbarY)
 }
 
+
+
+draw_set_font(fontSmall)
+draw_text_ext_colour(
+					text_padding_x + healthbarX + sprite_get_width(sprite_index),
+					healthbarY, (string(objPlayer.healthCurrent)),
+					0.5,
+					32,
+					c_white,
+					c_white,
+					c_white,
+					c_white,
+					1)

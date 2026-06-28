@@ -37,7 +37,8 @@
   },
   "name":"TopDown Trials",
   "resources":[
-    {"id":{"name":"Determination","path":"fonts/Determination/Determination.yy",},},
+    {"id":{"name":"fontDetermination","path":"fonts/fontDetermination/fontDetermination.yy",},},
+    {"id":{"name":"fontSmall","path":"fonts/fontSmall/fontSmall.yy",},},
     {"id":{"name":"objBasicAttackHB","path":"objects/objBasicAttackHB/objBasicAttackHB.yy",},},
     {"id":{"name":"objCheckpoint","path":"objects/objCheckpoint/objCheckpoint.yy",},},
     {"id":{"name":"objClickToPlay","path":"objects/objClickToPlay/objClickToPlay.yy",},},

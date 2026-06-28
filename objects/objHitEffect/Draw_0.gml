@@ -1,0 +1,1 @@
+draw_sprite_ext(sprHitEffect, -1, x, y, 1, 1, (point_direction(objPlayer.x, objPlayer.y, x, y)), c_white, 1)

@@ -57,6 +57,6 @@ speed = 0
 friction = 0.2
 
 
-draw_set_font(Determination)
+draw_set_font(fontDetermination)
 
 instance_create_layer(x,y,"Invisible_Assets", objPlayerSpecialHitbox)

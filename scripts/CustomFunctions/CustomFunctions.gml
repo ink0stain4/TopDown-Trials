@@ -46,9 +46,8 @@ function applyDamageFromPlayer(){
 	direction = point_direction(objPlayer.x, objPlayer.y, x, y)
 	speed = objPlayer.knockbackPower - weight
 	state = EnemyState.STUNNED
-	instance_create_layer(x, y, "Attacks", objHitEffect)
+	instance_create_layer(x, y - (bbox_bottom - bbox_top)/2, "Attacks", objHitEffect)
 
-	
 }
 
 function applyRangedDamageFromPlayer(){
