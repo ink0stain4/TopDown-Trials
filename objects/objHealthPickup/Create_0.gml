@@ -1,0 +1,1 @@
+healWorth = 20

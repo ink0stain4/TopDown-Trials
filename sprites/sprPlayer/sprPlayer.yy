@@ -5,7 +5,7 @@
   "bbox_bottom":30,
   "bbox_left":4,
   "bbox_right":11,
-  "bbox_top":28,
+  "bbox_top":27,
   "collisionKind":1,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
@@ -27,7 +27,7 @@
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"75e9f318-4182-46d3-9467-4d4795df4fb5","blendMode":0,"displayName":"Layer 3","isLocked":false,"name":"75e9f318-4182-46d3-9467-4d4795df4fb5","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
-    {"$GMImageLayer":"","%Name":"6e075c4d-5670-4058-94b2-f1f7c018b308","blendMode":0,"displayName":"Layer 2","isLocked":false,"name":"6e075c4d-5670-4058-94b2-f1f7c018b308","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"6e075c4d-5670-4058-94b2-f1f7c018b308","blendMode":0,"displayName":"Layer 2","isLocked":false,"name":"6e075c4d-5670-4058-94b2-f1f7c018b308","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":false,},
   ],
   "name":"sprPlayer",
   "nineSlice":null,

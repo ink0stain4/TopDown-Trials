@@ -1,3 +1,3 @@
-// slow status timer
+/// @description Slow status timer
 
 movementSpeed = baseMovementSpeed

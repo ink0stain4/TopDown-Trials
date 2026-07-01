@@ -14,6 +14,8 @@ if objPlayer.staggered // statemachine change this to just a state called "stagg
 }
 
 
+if !global.debug
+exit
 
 draw_set_font(fontSmall)
 draw_text_ext_colour(

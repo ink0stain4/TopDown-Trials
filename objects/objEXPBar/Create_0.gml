@@ -1,6 +1,8 @@
 padding_x = 8
 padding_y = 8
 
+text_padding_x = 4
+
 yLevel = -8 // used to dip the bar into view
 
 maxRevealOffset = -8

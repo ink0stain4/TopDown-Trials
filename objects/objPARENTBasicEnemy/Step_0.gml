@@ -41,7 +41,7 @@ if state != EnemyState.STUNNED
 
 
 var _towardPlayer = point_direction(x, y, _enemyTarget.x, _enemyTarget.y)
-var _randomDeviance = random_range(_towardPlayer - 3, _towardPlayer + 3)
+var _randomDeviance = random_range(_towardPlayer - 1, _towardPlayer + 1)
 
 
 if alarm[2] <= 0
@@ -63,7 +63,7 @@ if alarm[2] <= 0
 	
 		case EnemyState.AGGRO:
 		{
-				direction = _towardPlayer
+				direction = _randomDeviance
 				launch_airborne(random_range(2, 4))
 				speed = 3;
 				alarm[2] = 30
@@ -82,3 +82,6 @@ if alarm[2] <= 0
 		break;
 	}
 }
+
+
+

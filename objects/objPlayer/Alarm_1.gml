@@ -1,3 +1,3 @@
-// i frame timer
+/// @description iFrame timer
 
 iFrames = false

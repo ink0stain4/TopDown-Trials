@@ -41,6 +41,8 @@ playerStateLibrary() // determine playerState
 xspd = (moveRight - moveLeft) * movementSpeed;
 yspd = (moveDown - moveUp) * movementSpeed;
 
+
+// Define what Rolling, Walking, or Idling means
 if (state != PlayerState.ROLL)
 {
 	if (walking)
@@ -50,6 +52,8 @@ if (state != PlayerState.ROLL)
 }
 
 
+
+// Handle the tumble dodge roll thing
 if (state != PlayerState.ROLL) && (alarm[4] <= 0)
 {
 	if rollPressed
@@ -67,15 +71,49 @@ if (state != PlayerState.ROLL) && (alarm[4] <= 0)
 if place_meeting(x + xspd, y, objHitbox)
 {
 	xspd = 0;
+	hspeed = 0;
+
 }
 // y collision
 if place_meeting(x, y + yspd, objHitbox)
 {
 	yspd = 0;
+	vspeed = 0;
+
 }
 
-	x += xspd;
-	y += yspd;
+x += xspd;
+y += yspd;
+
+
+// Un-stuck the player
+if place_meeting(x, y, objHitbox)
+{
+	var _spot_found = false;
+	
+	// search outwards
+	for (var _radius = 1; _radius <= 32; ++_radius)
+	{
+		// Check 8 directions around the player
+		for (var _angle = 0; _angle < 360; _angle += 45)
+		{
+			var _check_x = x + lengthdir_x(_radius, _angle);
+			var _check_y = y + lengthdir_y(_radius, _angle);
+			
+			// If free space is found, move here
+			if !place_meeting(_check_x, _check_y, objHitbox)
+			{
+				x = _check_x;
+				y = _check_y;
+				_spot_found = true;
+				break;
+			}
+		}
+		if (_spot_found) break;
+	}
+}
+
+
 
 // clip player to pixel-perfect positioning
 
@@ -108,30 +146,3 @@ if place_meeting(x, y, objCheckpoint)
 var stack = new ItemStack(global.item_apple, 32)
 
 
-//show_debug_message(stack.item.name); // should be apple
-//show_debug_message(stack.amount); // should be 32 of them
-
-
-
-//// get the direction
-//if speed == 0
-//{
-//	direction = point_direction(x, y, mouse_x, mouse_y)
-//	isDashing = false
-
-
-//	// dash logic
-//	if dashPressed
-//	{
-//		show_debug_message(direction)
-//		isDashing = true
-//		speed = 6
-//	}
-//}
-
-
-
-
-// currentHealth = current frame * 0.63
-
-//draw_healthbar(0, 0, 100, 4, 100, c_grey, c_red, c_lime, 0, false, false)

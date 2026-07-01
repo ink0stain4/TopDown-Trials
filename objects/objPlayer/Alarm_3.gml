@@ -1,3 +1,3 @@
-// Roll invincibility timer
+/// @description Roll invincibility timer
 state = PlayerState.IDLE
-alarm[4] = 60
+alarm[4] = 10

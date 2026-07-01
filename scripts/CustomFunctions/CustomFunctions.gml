@@ -10,11 +10,25 @@ function checkFullscreenShortcut()
 		}
 }
 	
+	
+function checkQuitShortcut()
+{
+	
+}
 
 function playerDie(){
 	
 	game_restart();
 };
+
+
+function cameraShake(_duration){
+	with objCameraManager
+	{
+		alarm[0] = _duration
+	}
+}
+
 
 function takeDamage(_debuff, _amount){
 	
@@ -28,6 +42,7 @@ function takeDamage(_debuff, _amount){
 		self.iFrames = true;
 		self.alarm[1] = game_get_speed(gamespeed_fps);
 		audio_play_sound(sndEnemyHurt, 1, false, 1, 0, random_range(0.8, 1.2))
+		cameraShake(10)
 	};
 	
 };
@@ -35,18 +50,33 @@ function takeDamage(_debuff, _amount){
 function healPlayer(_target, _amount){
 	
 	if (_target.healthCurrent + _amount) > _target.healthMax
+	{
 		_target.healthCurrent = _target.healthMax;
+	}
 	else
+	{
 		_target.healthCurrent = _target.healthCurrent + _amount;
+	}
+	
+	with objHealthBar
+	{
+		part_particles_create(global.partSystem, random_range(bbox_left + healthbarX, bbox_right + healthbarX), random_range(bbox_top + healthbarY, bbox_bottom + healthbarY), global.particleTypeHealthGain, 16)
+	}
 }
 
 
 function applyDamageFromPlayer(){
+
+	var _relativeToPlayer = point_direction(objPlayer.x, objPlayer.y, x, y)
+	var _particleSpread = 30
+	
 	enemyHealth -= objPlayer.attackDamage
-	direction = point_direction(objPlayer.x, objPlayer.y, x, y)
+	direction = _relativeToPlayer
 	speed = objPlayer.knockbackPower - weight
 	state = EnemyState.STUNNED
 	instance_create_layer(x, y - (bbox_bottom - bbox_top)/2, "Attacks", objHitEffect)
+	part_type_direction(global.particleTypeBasic, _relativeToPlayer, _relativeToPlayer + 30, 0, 0);
+	part_particles_create(global.partSystem, x, y, global.particleTypeBasic, 6);
 
 }
 
@@ -67,6 +97,7 @@ function oscillate(_speed, _displacement){
 	y = ystart + dsin(current_time * _speed) * _displacement
 	
 }
+
 
 function init_airborne_properties(_z_gravity = 0.4, _bounce_multiplier = 0.4) {
 	z = 0;              // Current height above the ground (0 = on the ground)

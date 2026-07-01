@@ -1,1 +1,1 @@
-tab_pressed = true
+global.debug = !global.debug

@@ -1,1 +1,5 @@
 checkFullscreenShortcut()
+
+checkQuitShortcut()
+
+

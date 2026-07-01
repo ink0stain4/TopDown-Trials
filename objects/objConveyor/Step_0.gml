@@ -16,3 +16,5 @@ for (var i = 0; i < _instance_amount; ++i)
 }
 
 ds_list_destroy(_conveyorList);
+
+

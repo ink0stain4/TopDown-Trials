@@ -1,0 +1,1 @@
+/// @description iFrame blinking-effect interval
