@@ -1,4 +1,21 @@
 function playerInputChecks(){
+	if instance_exists(objMenu)
+	{
+		moveRight		= 0
+		moveLeft		= 0
+		moveUp			= 0
+		moveDown		= 0
+		
+		interactPressed	= 0
+		dashPressed		= 0
+	
+		attackPressed	= 0
+		rollPressed		= 0
+	
+		scrollUp		= 0
+		scrollDown		= 0
+	exit
+	}
 	
 	
 	moveRight		= keyboard_check(ord("D"))
@@ -14,6 +31,18 @@ function playerInputChecks(){
 	
 	scrollUp		= mouse_wheel_up()
 	scrollDown		= mouse_wheel_down()
+	
+	
+// CHANGE PLAYER FACING DIRECTION
+if state != PlayerState.ROLL
+{
+	if (mouse_x >= x)
+	{
+		facing = -1
+	} else
+	facing = 1
+}
+
 	
 
 }

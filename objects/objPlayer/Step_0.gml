@@ -9,16 +9,6 @@ WeaponDictionary()
 playerStatsUpdate()
 
 
-// CHANGE PLAYER FACING DIRECTION
-if state != PlayerState.ROLL
-{
-	if (mouse_x >= x)
-	{
-		facing = -1
-	} else
-	facing = 1
-}
-
 
 // Alarm[0] = Slow status effect duration
 // Alarm[1] = iFrames timer
@@ -54,7 +44,7 @@ if (state != PlayerState.ROLL)
 
 
 // Handle the tumble dodge roll thing
-if (state != PlayerState.ROLL) && (alarm[4] <= 0)
+if (state != PlayerState.ROLL) && (alarm[4] <= 0) && (staminaCurrent > 10) // 10 magic number will change ig
 {
 	if rollPressed
 	{
@@ -63,6 +53,7 @@ if (state != PlayerState.ROLL) && (alarm[4] <= 0)
 		image_index = 0
 		state = PlayerState.ROLL
 		alarm[3] = 22
+		staminaCurrent -= 10 // magic number
 	}
 }
 
@@ -117,19 +108,14 @@ if place_meeting(x, y, objHitbox)
 
 // clip player to pixel-perfect positioning
 
-if (!walking)
-{
-	x = round(x);
-	y = round(y);
-}
+//if (!walking)
+//{
+//	x = round(x);
+//	y = round(y);
+//}
 
 
-// kill player
-if healthCurrent <= 0
-{
-	playerDie();
-}
-	
+
 
 if place_meeting(x, y, objCheckpoint)
 {
@@ -138,8 +124,6 @@ if place_meeting(x, y, objCheckpoint)
 		show_debug_message("Saved!")
 	}
 }
-
-
 
 
 

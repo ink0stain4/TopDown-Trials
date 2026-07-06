@@ -3,7 +3,7 @@ healthbarY = camera_get_view_y(view_camera) + padding_y
 
 draw_sprite(
 			sprHealthBar,
-			63 - (objPlayer.healthCurrent * 0.63),
+			63 - (objPlayer.healthCurrent * (63 / global.healthMax)),
 			healthbarX,
 			healthbarY
 			)

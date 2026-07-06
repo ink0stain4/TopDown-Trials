@@ -5,6 +5,10 @@ iFrame_dur = 5
 damageDebuff = debuffType.SLOWED
 damageAmount = 25
 
+
+aggroRange = 72
+trackingRange = (aggroRange * 2)
+
 enemyHealth = 20
 
 invulnerable = false

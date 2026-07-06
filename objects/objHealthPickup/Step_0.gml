@@ -2,7 +2,7 @@ if (distance_to_object(objPlayer) <= (objPlayer.collectionDistance /2))
 {
 	direction = point_direction(x, y, objPlayer.x, objPlayer.y-14)
 	speed = lerp(speed, 5, 0.25)
-	part_particles_create(global.partSystem, x, y, global.particleTypeHealthTrail, 1);
+	part_particles_create(global.partSystem, x, y, global.particleTypeHealthTrail, 2);
 }
 else
 oscillate(0.2, 2)

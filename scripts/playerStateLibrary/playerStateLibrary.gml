@@ -28,10 +28,15 @@ function checkXP()
 	if (bankedXP >= 0)
 	{
 	global.playerLevel++
-	global.playerXP = bankedXP	
-	global.expRequiredLvlUP = round(63 + (global.playerLevel * 20))
+	global.playerXP = bankedXP
+	global.expRequiredLvlUP = round(63 + (global.playerLevel * 200))
+	global.healthMax = round(global.healthMax * 1.1)
+	
+	with objHealthBar
+	{}
+		
 
-	audio_play_sound(choose(sndYummy1, sndYummy2), 1, false, 3, 0, random_range(0.6, 1.4))
+	audio_play_sound(choose(sndLvlup1, sndLvlup2), 1, false, 3, 0, random_range(0.6, 1.4))
 	
 	show_debug_message(string(global.playerXP))
 	show_debug_message(string(global.playerLevel))
@@ -41,11 +46,34 @@ function checkXP()
 }
 
 
+function checkHealth()
+{
+	// kill player
+	if healthCurrent <= 0
+	{
+		playerDie();
+	}
+}
+
+
+function gainStamina()
+{
+	if state == PlayerState.ROLL exit;
+	
+	if (staminaCurrent < global.staminaMax) // always make stamina gain take 10 seconds
+	staminaCurrent += (global.staminaMax / (10 * game_get_speed(gamespeed_fps)));
+
+	if (staminaCurrent > global.staminaMax) // no going over stamina limit
+	staminaCurrent = global.staminaMax;
+}
 
 
 function playerStatsUpdate()
 {
 	checkXP()
+	checkHealth()
+	gainStamina()
+	
 }
 
 

@@ -11,10 +11,6 @@ function checkFullscreenShortcut()
 }
 	
 	
-function checkQuitShortcut()
-{
-	
-}
 
 function playerDie(){
 	
@@ -30,6 +26,7 @@ function cameraShake(_duration){
 }
 
 
+
 function takeDamage(_debuff, _amount){
 	
 	if (state == PlayerState.ROLL)
@@ -37,21 +34,27 @@ function takeDamage(_debuff, _amount){
 	
 	if (!iFrames)
 	{
-		self.debuff = _debuff;
-		self.healthCurrent -= _amount;
-		self.iFrames = true;
-		self.alarm[1] = game_get_speed(gamespeed_fps);
+		id.debuff = _debuff;
+		id.healthCurrent -= _amount;
+		id.iFrames = true;
+		id.alarm[1] = game_get_speed(gamespeed_fps);
 		audio_play_sound(sndEnemyHurt, 1, false, 1, 0, random_range(0.8, 1.2))
-		cameraShake(10)
+		cameraShake(5)
+		
+		with objHealthBar
+		{
+			part_particles_create(global.partSystemHUD, random_range(bbox_left + healthbarX, bbox_right + healthbarX), random_range(bbox_top + healthbarY, bbox_bottom + healthbarY), global.particleTypeHealthLoss, 24)
+		};
+		
 	};
 	
 };
 
 function healPlayer(_target, _amount){
 	
-	if (_target.healthCurrent + _amount) > _target.healthMax
+	if (_target.healthCurrent + _amount) > global.healthMax
 	{
-		_target.healthCurrent = _target.healthMax;
+		_target.healthCurrent = global.healthMax;
 	}
 	else
 	{
@@ -60,7 +63,7 @@ function healPlayer(_target, _amount){
 	
 	with objHealthBar
 	{
-		part_particles_create(global.partSystem, random_range(bbox_left + healthbarX, bbox_right + healthbarX), random_range(bbox_top + healthbarY, bbox_bottom + healthbarY), global.particleTypeHealthGain, 16)
+		part_particles_create(global.partSystemHUD, random_range(bbox_left + healthbarX, bbox_right + healthbarX), random_range(bbox_top + healthbarY, bbox_bottom + healthbarY), global.particleTypeHealthGain, 16)
 	}
 }
 
@@ -73,22 +76,24 @@ function applyDamageFromPlayer(){
 	enemyHealth -= objPlayer.attackDamage
 	direction = _relativeToPlayer
 	speed = objPlayer.knockbackPower - weight
-	state = EnemyState.STUNNED
+	// state = EnemyState.STUNNED
 	instance_create_layer(x, y - (bbox_bottom - bbox_top)/2, "Attacks", objHitEffect)
-	part_type_direction(global.particleTypeBasic, _relativeToPlayer, _relativeToPlayer + 30, 0, 0);
+	part_type_direction(global.particleTypeBasic, _relativeToPlayer, _relativeToPlayer + 30, 0, 0); //knockback
 	part_particles_create(global.partSystem, x, y, global.particleTypeBasic, 6);
 
 }
 
 function applyRangedDamageFromPlayer(){
 	enemyHealth -= objPlayer.attackDamage
+	part_type_direction(global.particleTypeBasic, 0, 360, 0, 0); //knockback
+	part_particles_create(global.partSystem, x, y, global.particleTypeBasic, 6);
 }
 
 
 function dropSmallEXP(_multiplier)
 {
 	for (var i = 0; i < _multiplier; ++i) {
-		instance_create_layer(x, y, "High_Instances", objEXPSmall)
+		instance_create_layer(x, y, "Instances", objEXPSmall)
 	}
 }
 
@@ -140,11 +145,106 @@ function launch_airborne(_upward_force) {
 }
 
 
+
+#region Menu Functions
+
+function menu(_x, _y, _options, _description = -1)
+{
+	with (instance_create_layer(_x, _y, "HUD_Elements", objMenu))
+	{
+		options = _options;
+		description = _description;
+		optionsCount = array_length(_options);
+		hovermarker = "* ";
+		
+		// Set up size
+		margin = 9;
+		draw_set_font(fontSmall);
+		
+		width = 1;
+		if (description != -1) width = max(width, string_width(_description));
+		for (var i = 0; i < optionsCount; i++)
+		{
+			width = max(width, string_width(_options[i][0]));
+		}
+		width += string_width(hovermarker);
+		
+		heightLine = 17;
+		height = heightLine * (optionsCount + !(description == -1));
+		
+		widthFull = width + margin * 2;
+		heightFull = height + margin * 2;
+	}
+}
+		
+		
+function mainMenu()
+{
+	if file_exists("save_file.ini")
+		menu
+		(
+			0,
+			0,
+			[
+				["Continue", loadGame],
+				["New Game", newGame],
+				["Quit", function()
+							{quitAsk(mainMenu)}]
+			],
+			"Main Menu"
+		);
+	else
+		menu
+		(
+			0,
+			0,
+			[
+				["New Game", loadGame],
+				["Quit", function()
+							{quitAsk(mainMenu)}]
+			],
+			"Main Menu"
+		);
+}
+
+
+function quitAsk(_prevMenu = -1)
+{
+	menu (0, 0,
+	[
+		["Yes", game_end],
+		["No", _prevMenu]
+	],
+	"Are you sure?");
+}
+
+
+function pauseMenu()
+{
+	menu (0, 0,		
+		[
+			["Resume", -1],
+			["Stats", -1],
+			["Equipment", -1],
+			["Save Game", saveGame],
+			["Quit to Title", function()
+								{quitAsk(game_restart())}]
+		],
+		"Menu"
+	);
+}
+
+
+#endregion
+
+
 function saveGame(){
 	ini_open("save_file.ini")
 
 		ini_write_real("Room", "Room", room)
 
+		ini_write_real("Stats", "Health", global.healthMax);
+		ini_write_real("Stats", "Stamina", global.staminaMax);
 		ini_write_real("Stats", "Money", global.playerMoney);
 		ini_write_real("Stats", "Level", global.playerLevel);
 		ini_write_real("Stats", "EXP", global.playerXP);
@@ -155,8 +255,7 @@ function saveGame(){
 		
 		ini_write_real("Config", "SFX", global.SFX_vol)
 		ini_write_real("Config", "Music", global.Music_vol)
-		
-		
+			
 		ini_write_real("Coordinates", "x", objPlayer.x);
 		ini_write_real("Coordinates", "y", objPlayer.y);
 
@@ -169,7 +268,9 @@ function saveGame(){
 function roomSetup()
 {
 	instance_create_layer(0, 0, "HUD_Elements", objHealthBar)
-	instance_create_layer((camera_get_view_width(view_camera) - 8), 0, "HUD_Elements", objEXPBar)
+	instance_create_layer(0, 0, "HUD_Elements", objStaminaBar)
+	
+	instance_create_layer((camera_get_view_width(view_camera) - 16), 0, "HUD_Elements", objEXPBar)
 }
 
 
@@ -180,6 +281,8 @@ function loadGame(){
 	
 		global.playerBenched = ini_read_real("PlayerState", "playerBenched", false)
 
+		global.healthMax		= ini_read_real("Stats", "Health", 100);
+		global.staminaMax		= ini_read_real("Stats", "Stamina", 20);
 		global.playerMoney		= ini_read_real("Stats", "Money", 0);
 		global.playerLevel		= ini_read_real("Stats", "Level", 0);
 		global.playerXP			= ini_read_real("Stats", "EXP", 0);
@@ -219,6 +322,8 @@ function loadGame(){
 	{
 		global.playerBenched = false
 	
+		global.healthMax = 100
+		global.staminaMax = 20
 		global.playerMoney = 0
 		global.playerLevel = 0
 		global.playerXP = 0
@@ -253,3 +358,11 @@ function loadGame(){
 }
 
 
+function newGame()
+{
+	if file_exists("save_file.ini")
+	{
+		file_delete("save_file.ini")
+		loadGame()
+	}
+}

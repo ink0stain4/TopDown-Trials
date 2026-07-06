@@ -16,9 +16,9 @@ if instance_place(x, y, objPlayerSpecialHitbox)
 	objEXPBar.toastXPBar = true
 	audio_play_sound(sndXPOrb, 1, false, 1, 0, random_range(0.6, 1.2))
 	
-	with objEXPBar
+	with objPlayerSpecialHitbox
 	{
-		part_particles_create(global.partSystem, random_range(bbox_left, bbox_right), random_range(bbox_top, bbox_bottom), global.particleTypeExpBar, 16)
+		part_particles_create(global.partSystemHUD, random_range(x + (sprite_width / 2), x - (sprite_width / 2)), random_range(y + (sprite_height / 2), y - (sprite_height / 2)), global.particleTypeExpBar, 3)
 	}
 	instance_destroy()
 }

@@ -14,7 +14,7 @@ enum Weapon
 
 
 
-class = Weapon.MELEE
+class = Weapon.MELEE // type of weapon currently held
 
 state = PlayerState.IDLE
 
@@ -39,8 +39,9 @@ attackRate = 0.5 * game_get_speed(gamespeed_fps)
 
 walking = false
 
-healthMax = 100
-healthCurrent = 100
+healthCurrent = global.healthMax
+
+staminaCurrent = global.staminaMax
 
 staggered = false // displays damage alert over health bar
 debuff = debuffType.NONE
@@ -56,7 +57,9 @@ direction = 270;
 speed = 0
 friction = 0.2
 
-
-draw_set_font(fontDetermination)
-
-instance_create_layer(x,y,"Invisible_Assets", objPlayerSpecialHitbox)
+instance_create_layer // Handles pickup collection, eg. health orbs, EXP orbs, items, etc.
+					(
+					x,y,
+					"Invisible_Assets",
+					objPlayerSpecialHitbox
+					)

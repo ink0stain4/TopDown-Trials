@@ -10,10 +10,13 @@
   "name":"objEXPSmall",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Pickups",
+    "path":"folders/Objects/Pickups.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"objPARENTdrawOrder",
+    "path":"objects/objPARENTdrawOrder/objPARENTdrawOrder.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
