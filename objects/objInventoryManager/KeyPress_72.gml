@@ -1,0 +1,1 @@
+array_push(inventory, global.itemDictionary.burger);

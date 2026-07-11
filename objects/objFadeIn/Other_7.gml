@@ -1,0 +1,2 @@
+roomSetup()
+instance_destroy()

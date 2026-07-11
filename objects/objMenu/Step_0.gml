@@ -1,11 +1,13 @@
+// objMenu step
+
 mouseOver = false;
 
-if (point_in_rectangle(mouse_x, mouse_y, x, y, x+widthFull, y+heightFull))
+if (point_in_rectangle(mouse_x, mouse_y, final_x, final_y, final_x+widthFull, final_y+heightFull))
 {
 	mouseOver = true;
 	if ((mxPrev != mouse_x) || (myPrev != mouse_y))
 	{
-		var _mouseHoverLine = (mouse_y - (y + margin)) div heightLine;
+		var _mouseHoverLine = (mouse_y - (final_y + margin)) div heightLine;
 		if !(description == -1) _mouseHoverLine -=1;
 		if (_mouseHoverLine < 0) _mouseHoverLine = 0;
 		if (_mouseHoverLine > optionsCount-1) _mouseHoverLine = optionsCount-1;

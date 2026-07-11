@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"playerInteractChecks",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"playerInteractChecks",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

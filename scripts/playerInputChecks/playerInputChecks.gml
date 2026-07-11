@@ -1,5 +1,5 @@
 function playerInputChecks(){
-	if instance_exists(objMenu)
+	if ((instance_exists(objMenu)) || (global.cutsceneMovelock))
 	{
 		moveRight		= 0
 		moveLeft		= 0

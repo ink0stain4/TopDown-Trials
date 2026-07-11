@@ -1,0 +1,10 @@
+draw_sprite_ext(
+				sprite_index,
+				-1,
+				camera_get_view_x(view_camera),
+				camera_get_view_y(view_camera),
+				9999,
+				9999,
+				0,
+				c_white,
+				1)

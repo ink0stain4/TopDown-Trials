@@ -1,24 +1,85 @@
 function playerStateLibrary()
 {
+	var _prevSprite = sprite_index;
+	
 	switch (state)
 	{
+		case PlayerState.FADEIN:
+		{
+			if instance_exists(objFadeIn)
+			exit;
+			
+			if (sprite_index != sprPlayerFadeIn)
+			{
+				sprite_index = sprPlayerFadeIn;
+				image_index = 0;
+			}
+			
+			image_speed = 1;
+			global.cutsceneMovelock = true;
+			
+			if (image_index >= (image_number - 1))
+			{
+				state = PlayerState.IDLE
+				global.cutsceneMovelock = false
+			}
+		}
+		break;
 		
 		case PlayerState.IDLE:
-		sprite_index = sprPlayer;
+		{
+			sprite_index = sprPlayer;
+		}
 		break;
 
 		case PlayerState.WALKING:
-		sprite_index = sprPlayerWalk;
+		{
+			sprite_index = sprPlayerWalk;
+		}
 		break;
 		
 		case PlayerState.ROLL:
-		sprite_index = sprPlayerRoll;
+		{
+			if (sprite_index != sprPlayerRoll)
+			{
+				sprite_index = sprPlayerRoll;
+				image_index = 0;
+			}
+		}
 		break;
 		
+		case PlayerState.CUTSCENE:
+		{
+			sprite_index = sprPlayer
+		}
+		break;
 		
+		case PlayerState.FADEOUT:
+		{
+			if (sprite_index != sprPlayerFadeOut)
+			{
+				sprite_index = sprPlayerFadeOut;
+				image_index = 0;
+			}
+			
+			global.cutsceneMovelock = true;
+			
+			if (image_index >= (image_number - 1)) && !(instance_exists(objFadeOut))
+			{
+				
+				with instance_create_depth(x, y, -99999, objFadeOut)
+				{
+					teleport = true
+				}
+			}
+		}
+		break;
+
 	}
 
 }
+
+
 
 
 function checkXP()
@@ -61,7 +122,7 @@ function gainStamina()
 	if state == PlayerState.ROLL exit;
 	
 	if (staminaCurrent < global.staminaMax) // always make stamina gain take 10 seconds
-	staminaCurrent += (global.staminaMax / (10 * game_get_speed(gamespeed_fps)));
+	staminaCurrent += global.staminaMax / (staminaRecharge * game_get_speed(gamespeed_fps));
 
 	if (staminaCurrent > global.staminaMax) // no going over stamina limit
 	staminaCurrent = global.staminaMax;
@@ -73,7 +134,6 @@ function playerStatsUpdate()
 	checkXP()
 	checkHealth()
 	gainStamina()
-	
 }
 
 

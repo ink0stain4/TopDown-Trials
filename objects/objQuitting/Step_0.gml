@@ -8,7 +8,7 @@ hold = clamp(hold, 0, 30)
 
 
 
-show_debug_message(string(hold))
+//show_debug_message(string(hold))
 
 if keyboard_check_released(vk_escape)
 {

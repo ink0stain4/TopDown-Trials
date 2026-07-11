@@ -119,8 +119,8 @@
   "maintainGms1Font":false,
   "name":"fontSmall",
   "parent":{
-    "name":"TopDown Trials",
-    "path":"TopDown Trials.yyp",
+    "name":"Dialogues and Menus",
+    "path":"folders/Dialogues and Menus.yy",
   },
   "pointRounding":0,
   "ranges":[

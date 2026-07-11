@@ -1,14 +1,17 @@
+// objMenu draw
+
 var _cam_x = camera_get_view_x(view_camera);
 var _cam_y = camera_get_view_y(view_camera);
 var _cam_w = camera_get_view_width(view_camera);
 var _cam_h = camera_get_view_height(view_camera);
 
+
 // center menu
-x = _cam_x + (_cam_w / 2) - (widthFull / 2);
-y = _cam_y + (_cam_h / 2) - (heightFull / 2);
+final_x = _cam_x + (_cam_w / 2) - (widthFull / 2) + x_offset;
+final_y = _cam_y + (_cam_h / 2) - (heightFull / 2) + y_offset;
 
 // draw menu box
-draw_sprite_stretched(sprMenuBox, 0, x, y, widthFull, heightFull);
+draw_sprite_stretched(sprMenuBox, -1, final_x, final_y, widthFull, heightFull);
 
 // draw text
 draw_set_font(fontSmall);
@@ -16,8 +19,8 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
 // consider margins
-var _text_x = x + margin;
-var _text_y = y + margin;
+var _text_x = final_x + margin;
+var _text_y = final_y + margin;
 var _has_desc = (description != -1);
 
 for (var l = 0; l < (optionsCount + _has_desc); l++) {

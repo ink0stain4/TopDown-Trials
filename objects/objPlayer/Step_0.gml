@@ -9,6 +9,10 @@ WeaponDictionary()
 playerStatsUpdate()
 
 
+interactableInRange = noone // for drawing button prompts on interactable objects
+
+playerInteractChecks()
+
 
 // Alarm[0] = Slow status effect duration
 // Alarm[1] = iFrames timer
@@ -33,7 +37,7 @@ yspd = (moveDown - moveUp) * movementSpeed;
 
 
 // Define what Rolling, Walking, or Idling means
-if (state != PlayerState.ROLL)
+if (state != PlayerState.ROLL) && (global.cutsceneMovelock == false)
 {
 	if (walking)
 	{
@@ -115,18 +119,5 @@ if place_meeting(x, y, objHitbox)
 //}
 
 
-
-
-if place_meeting(x, y, objCheckpoint)
-{
-	if (interactPressed){
-		saveGame();
-		show_debug_message("Saved!")
-	}
-}
-
-
-
-var stack = new ItemStack(global.item_apple, 32)
 
 
