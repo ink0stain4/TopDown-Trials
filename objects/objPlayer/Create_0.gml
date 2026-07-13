@@ -15,7 +15,7 @@ enum Weapon
 	RANGED
 }
 
-
+//init_airborne_properties(0.3, 0)
 
 class = Weapon.MELEE // type of weapon currently held
 
@@ -35,6 +35,7 @@ slowMultiplier = 0.5; // the value enemies set player movement speed to on-conta
 
 interactDistance = 10 // hard-set magic number for the player's interact distance
 
+showInventory = false
 
 // Stats // Player stats received from save files
 strength = global.playerStrength // attack power

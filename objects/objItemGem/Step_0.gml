@@ -1,3 +1,6 @@
+update_airborne_physics()
+
+
 #region // Physics
 if instance_place(x + hspeed, y, objHitbox)
 {
@@ -8,8 +11,9 @@ if instance_place(x, y + vspeed, objHitbox)
 {
 	vspeed = -vspeed
 }
-	
-// clip enemies out of walls
+
+
+// clip item out of walls
 if place_meeting(x, y, objHitbox)
 {
 	var _spot_found = false;
@@ -17,7 +21,7 @@ if place_meeting(x, y, objHitbox)
 	// search outwards
 	for (var _radius = 1; _radius <= 32; ++_radius)
 	{
-		// Check 8 directions around the player
+		// Check 8 directions around the item
 		for (var _angle = 0; _angle < 360; _angle += 45)
 		{
 			var _check_x = x + lengthdir_x(_radius, _angle);
@@ -38,29 +42,31 @@ if place_meeting(x, y, objHitbox)
 
 #endregion
 
-if (alarm[0] > 0)
-{
-	oscillate(0.2, 2)
-	exit
-}
-else
-{
-	if (distance_to_object(objPlayerSpecialHitbox) <= (objPlayer.collectionDistance /2))
-	{
-		direction = point_direction(x, y, objPlayer.x, objPlayer.y-14)
-		speed = lerp(speed, 5, 0.25)
-	} else oscillate(0.2, 2)
+if (alarm[0] > 0) exit;
 
-
-	if instance_place(x, y, objPlayerSpecialHitbox)
+for (var i = 0; i < objInventoryManager.invRows; i++)
+{
+	for (var j = 0; j < objInventoryManager.invColumns; j++)
 	{
-		itemGain(item)
-		audio_play_sound(sndXPOrb, 1, false)
+		if (objInventoryManager.inventory[i][j] == noone)
+		{
+			if (distance_to_object(objPlayerSpecialHitbox) <= (objPlayer.collectionDistance /2))
+			{
+				direction = point_direction(x, y, objPlayer.x, objPlayer.y-14)
+				speed = lerp(speed, 5, 0.25)
+			}
+
+			if instance_place(x, y, objPlayerSpecialHitbox)
+			{
+				addItemToInventory(item)
+				audio_play_sound(sndXPOrb, 1, false)
 	
-		instance_destroy()
+				instance_destroy()
+			}
+
+
+		}
 	}
-	
-
 }
 
-
+	

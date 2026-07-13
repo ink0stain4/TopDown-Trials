@@ -1,1 +1,1 @@
-array_push(inventory, global.itemDictionary.burger);
+addItemToInventory(global.itemDictionary.burger)

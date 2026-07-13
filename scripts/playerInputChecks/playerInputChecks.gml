@@ -1,5 +1,5 @@
 function playerInputChecks(){
-	if ((instance_exists(objMenu)) || (global.cutsceneMovelock))
+	if ((instance_exists(objMenu)) || (global.cutsceneMovelock) || (showInventory))
 	{
 		moveRight		= 0
 		moveLeft		= 0
@@ -8,6 +8,8 @@ function playerInputChecks(){
 		
 		interactPressed	= 0
 		dashPressed		= 0
+		
+		dropItemPressed = 0
 	
 		attackPressed	= 0
 		rollPressed		= 0
@@ -24,10 +26,11 @@ function playerInputChecks(){
 	moveDown		= keyboard_check(ord("S"))
 	
 	interactPressed	= keyboard_check_pressed(vk_space)
-	dashPressed		= keyboard_check_pressed(vk_shift)
+	rollPressed		= keyboard_check_pressed(vk_shift)
+
+	dropItemPressed = keyboard_check_pressed(ord("Q"))
 	
 	attackPressed	= mouse_check_button_pressed(mb_left)
-	rollPressed		= mouse_check_button_pressed(mb_right)
 	
 	scrollUp		= mouse_wheel_up()
 	scrollDown		= mouse_wheel_down()

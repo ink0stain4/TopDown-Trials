@@ -1,1 +1,1 @@
-array_push(inventory, global.itemDictionary.apple);
+addItemToInventory(global.itemDictionary.apple)

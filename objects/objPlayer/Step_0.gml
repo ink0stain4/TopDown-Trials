@@ -1,3 +1,5 @@
+//update_airborne_physics()
+
 playerInputChecks()
 
 debuffDictionary()
@@ -19,6 +21,8 @@ playerInteractChecks()
 // Alarm[2] = iFrame blinking-effect interval
 // Alarm[3] = Roll invincibility timer
 // Alarm[4] = Roll cooldown timer
+
+
 
 // set walking variable
 if (abs(xspd) > 0 || abs(yspd) > 0)
