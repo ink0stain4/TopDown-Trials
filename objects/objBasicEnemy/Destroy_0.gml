@@ -1,0 +1,3 @@
+dropSmallEXP(ExpAmount)
+
+enemyLoot()

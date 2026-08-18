@@ -12,6 +12,7 @@ draw_sprite(
 
 if global.debug
 {
+	draw_set_halign(fa_left)
 	draw_set_font(fontSmall)
 	draw_text_ext_colour(
 						text_padding_x + staminaBarX + sprite_get_width(sprite_index),

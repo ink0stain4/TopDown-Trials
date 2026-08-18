@@ -22,5 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"sndLvlup2.ogg",
-  "volume":0.56,
+  "volume":0.3,
 }

@@ -12,7 +12,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Dialogues and Menus",
-    "path":"folders/Dialogues and Menus.yy",
+    "path":"folders/Objects/Managers/Dialogues and Menus.yy",
   },
   "parentObjectId":null,
   "persistent":false,

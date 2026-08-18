@@ -5,17 +5,19 @@ draw_self()
 
 
 
-if (!global.debug)
-exit
-
-draw_set_font(fontSmall)
-draw_text_ext_colour(
-					x - (text_padding_x + padding_x) - sprite_get_width(sprite_index),
-					y, (string(global.playerXP)),
-					0.5,
-					32,
-					c_white,
-					c_white,
-					c_white,
-					c_white,
-					1)
+if global.debug
+{
+	draw_set_halign(fa_right)
+	draw_set_font(fontSmall)
+	var expInformation = (string(global.playerXP) + " / " + string(global.expRequiredLvlUP))
+	draw_text_ext_colour(
+						x - (text_padding_x + padding_x) - (sprite_get_width(sprite_index)/2) - (string_width(expInformation)),
+						y, expInformation,
+						0.5,
+						32,
+						c_white,
+						c_white,
+						c_white,
+						c_white,
+						1)
+}

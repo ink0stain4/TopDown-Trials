@@ -1,1 +1,0 @@
-addItemToInventory(global.itemDictionary.apple)

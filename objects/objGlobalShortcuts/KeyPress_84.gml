@@ -1,0 +1,1 @@
+spawnEnemy("cellyEnemy", objPlayer.x  + random_range(-30, 30), objPlayer.y + random_range(-30, 30))

@@ -1,0 +1,1 @@
+DropItem = global.itemDictionary[$ "craftingtable"]

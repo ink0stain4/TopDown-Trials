@@ -2,8 +2,8 @@
   "$GMSound":"v2",
   "%Name":"sndHeal",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"SFX",
+    "path":"audiogroups/SFX",
   },
   "bitDepth":1,
   "channelFormat":0,
@@ -22,5 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"sndHeal.ogg",
-  "volume":1.0,
+  "volume":0.3,
 }

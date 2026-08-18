@@ -1,4 +1,4 @@
 clickEnable = false
 
-alarm[0] = 110
+alarm[0] = 30
 image_alpha = 0

@@ -2,8 +2,15 @@ startUp = true
 
 expWorth = (round(random_range(3, 5)))
 
-friction = 0.4
-direction = random_range(0, 359)
-speed = random_range(2, 4)
+MagnetSpeed = 8
+PickupCD = random_range(60, 70)
 
-alarm[0] = 30
+overdue = false
+
+direction = random_range(0, 359)
+speed = random_range(0.2, 2)
+friction = (speed/30)
+
+
+
+alarm[0] = PickupCD

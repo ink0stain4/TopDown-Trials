@@ -16,7 +16,7 @@ draw_sprite_stretched(sprMenuBox, -1, final_x, final_y, widthFull, heightFull);
 // draw text
 draw_set_font(fontSmall);
 draw_set_halign(fa_left);
-draw_set_valign(fa_top);
+draw_set_valign(fa_middle);
 
 // consider margins
 var _text_x = final_x + margin;
@@ -28,7 +28,7 @@ for (var l = 0; l < (optionsCount + _has_desc); l++) {
 	
 	if (l == 0) && (_has_desc) {
 		// draw the description
-		draw_text(_text_x, _text_y, description);
+		draw_text(_text_x, _text_y + (l * heightLine) + (heightLine / 2), description);
 	} else {
 		// change offset for description
 		var _option_index = l - _has_desc;
@@ -41,7 +41,7 @@ for (var l = 0; l < (optionsCount + _has_desc); l++) {
 		}
 		
 		// draw optino text lines
-		draw_text(_text_x, _text_y + (l * heightLine), _str);
+		draw_text(_text_x, _text_y + (l * heightLine) + (heightLine / 2), _str);
 	}
 }
 

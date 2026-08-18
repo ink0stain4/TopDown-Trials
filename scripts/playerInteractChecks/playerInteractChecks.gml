@@ -1,3 +1,5 @@
+//playerInteractChecks.gml
+
 function playerInteractChecks()
 {
 	if global.cutsceneMovelock exit;
@@ -31,8 +33,9 @@ function playerInteractChecks()
 				
 				if interactPressed
 					{
-						_inst.interaction()
 						state = PlayerState.IDLE
+						_inst.interaction()
+
 						
 					}
 					

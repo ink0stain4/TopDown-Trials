@@ -1,5 +1,16 @@
+
+//playerInputChecks.gml
+
 function playerInputChecks(){
-	if ((instance_exists(objMenu)) || (global.cutsceneMovelock) || (showInventory))
+	if ((instance_exists(objMenu)) || (global.cutsceneMovelock) || (showInventory) || (equipmentOpen))
+	{
+		global.playerBusy = true
+	} else
+	{
+		global.playerBusy = false
+	}
+	
+	if (global.playerBusy)
 	{
 		moveRight		= 0
 		moveLeft		= 0
@@ -14,11 +25,10 @@ function playerInputChecks(){
 		attackPressed	= 0
 		rollPressed		= 0
 	
-		scrollUp		= 0
-		scrollDown		= 0
+		scroll_up		= 0
+		scroll_down		= 0
 	exit
 	}
-	
 	
 	moveRight		= keyboard_check(ord("D"))
 	moveLeft		= keyboard_check(ord("A"))
@@ -32,8 +42,8 @@ function playerInputChecks(){
 	
 	attackPressed	= mouse_check_button_pressed(mb_left)
 	
-	scrollUp		= mouse_wheel_up()
-	scrollDown		= mouse_wheel_down()
+	scroll_up		= mouse_wheel_up()
+	scroll_down		= mouse_wheel_down()
 	
 	
 // CHANGE PLAYER FACING DIRECTION

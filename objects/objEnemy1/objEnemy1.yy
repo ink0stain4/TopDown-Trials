@@ -6,12 +6,12 @@
   "name":"objEnemy1",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Enemies",
+    "path":"folders/Objects/Enemies.yy",
   },
   "parentObjectId":{
-    "name":"objPARENTBasicEnemy",
-    "path":"objects/objPARENTBasicEnemy/objPARENTBasicEnemy.yy",
+    "name":"objBasicEnemy",
+    "path":"objects/objBasicEnemy/objBasicEnemy.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -38,6 +38,7 @@
   "tags":[
     "Conveyable",
     "Damageable",
+    "Pullable",
   ],
   "visible":true,
 }

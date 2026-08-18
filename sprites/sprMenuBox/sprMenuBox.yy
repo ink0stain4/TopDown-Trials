@@ -45,7 +45,7 @@
   "origin":4,
   "parent":{
     "name":"Dialogues and Menus",
-    "path":"folders/Dialogues and Menus.yy",
+    "path":"folders/Objects/Managers/Dialogues and Menus.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

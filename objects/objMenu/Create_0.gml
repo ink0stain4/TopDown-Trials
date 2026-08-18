@@ -10,5 +10,3 @@ final_y = 0 - y_offset;
 
 mxPrev = mouse_x;
 myPrev = mouse_y;
-
-global.cutsceneMovelock = true

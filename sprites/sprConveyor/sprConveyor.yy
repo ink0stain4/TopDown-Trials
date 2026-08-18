@@ -29,9 +29,9 @@
     {"$GMSpriteFrame":"v1","%Name":"fe84c3ec-2cc8-43d6-af3b-258bac329643","name":"fe84c3ec-2cc8-43d6-af3b-258bac329643","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"b9f6c5d0-25f2-4d2b-8bb9-2314ad74a747","name":"b9f6c5d0-25f2-4d2b-8bb9-2314ad74a747","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
-  "gridX":1,
-  "gridY":1,
-  "height":16,
+  "gridX":16,
+  "gridY":16,
+  "height":48,
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"6bbd9802-6942-4b2e-8f74-766c7fa816fe","blendMode":0,"displayName":"default","isLocked":false,"name":"6bbd9802-6942-4b2e-8f74-766c7fa816fe","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
@@ -44,10 +44,10 @@
     "guideColour":[4294902015,4294902015,4294902015,4294902015,],
     "highlightColour":1728023040,
     "highlightStyle":1,
-    "left":14,
+    "left":5,
     "resourceType":"GMNineSliceData",
     "resourceVersion":"2.0",
-    "right":2,
+    "right":1,
     "tileMode":[
       0,
       0,
@@ -165,5 +165,5 @@
   },
   "type":0,
   "VTile":false,
-  "width":48,
+  "width":16,
 }

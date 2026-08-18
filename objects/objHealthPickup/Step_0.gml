@@ -1,4 +1,4 @@
-if (distance_to_object(objPlayer) <= (objPlayer.collectionDistance /2))
+if (distance_to_object(objPlayer) <= (objPlayer.playerRange /2))
 {
 	direction = point_direction(x, y, objPlayer.x, objPlayer.y-14)
 	speed = lerp(speed, 5, 0.25)

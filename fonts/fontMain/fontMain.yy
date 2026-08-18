@@ -120,7 +120,7 @@
   "name":"fontMain",
   "parent":{
     "name":"Dialogues and Menus",
-    "path":"folders/Dialogues and Menus.yy",
+    "path":"folders/Objects/Managers/Dialogues and Menus.yy",
   },
   "pointRounding":0,
   "ranges":[

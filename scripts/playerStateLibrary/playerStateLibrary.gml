@@ -3,38 +3,22 @@ function playerStateLibrary()
 	var _prevSprite = sprite_index;
 	
 	switch (state)
-	{
-		case PlayerState.FADEIN:
-		{
-			if instance_exists(objFadeIn)
-			exit;
-			
-			if (sprite_index != sprPlayerFadeIn)
-			{
-				sprite_index = sprPlayerFadeIn;
-				image_index = 0;
-			}
-			
-			image_speed = 1;
-			global.cutsceneMovelock = true;
-			
-			if (image_index >= (image_number - 1))
-			{
-				state = PlayerState.IDLE
-				global.cutsceneMovelock = false
-			}
-		}
-		break;
-		
+	{		
 		case PlayerState.IDLE:
 		{
 			sprite_index = sprPlayer;
+			
+			rightClickPlaceBlock()
+			show_debug_message("IDLE")
 		}
 		break;
 
 		case PlayerState.WALKING:
 		{
 			sprite_index = sprPlayerWalk;
+		
+			rightClickPlaceBlock()
+			show_debug_message("WALKING")
 		}
 		break;
 		
@@ -45,36 +29,26 @@ function playerStateLibrary()
 				sprite_index = sprPlayerRoll;
 				image_index = 0;
 			}
+			show_debug_message("ROLL")
 		}
 		break;
 		
-		case PlayerState.CUTSCENE:
+		case PlayerState.STUNNED:
 		{
-			sprite_index = sprPlayer
-		}
-		break;
-		
-		case PlayerState.FADEOUT:
-		{
-			if (sprite_index != sprPlayerFadeOut)
+			if (sprite_index != sprPlayer)
 			{
-				sprite_index = sprPlayerFadeOut;
+				sprite_index = sprPlayer;
 				image_index = 0;
 			}
 			
-			global.cutsceneMovelock = true;
-			
-			if (image_index >= (image_number - 1)) && !(instance_exists(objFadeOut))
+			if alarm[6] <= 0
 			{
-				
-				with instance_create_depth(x, y, -99999, objFadeOut)
-				{
-					teleport = true
-				}
+				alarm[6] = 10
 			}
+			
+			show_debug_message("STUN")
 		}
 		break;
-
 	}
 
 }
@@ -90,8 +64,8 @@ function checkXP()
 	{
 	global.playerLevel++
 	global.playerXP = bankedXP
-	global.expRequiredLvlUP = round(63 + (global.playerLevel * 200))
-	global.healthMax = round(global.healthMax * 1.1)
+	global.expRequiredLvlUP = floor(63 + (global.playerLevel * 50))
+	global.healthMax = floor(global.healthMax * 1.1)
 	
 	with objHealthBar
 	{}
@@ -122,7 +96,9 @@ function gainStamina()
 	if state == PlayerState.ROLL exit;
 	
 	if (staminaCurrent < global.staminaMax) // always make stamina gain take 10 seconds
-	staminaCurrent += global.staminaMax / (staminaRecharge * game_get_speed(gamespeed_fps));
+	{
+		staminaCurrent += global.staminaMax / (staminaRecharge * game_get_speed(gamespeed_fps));
+	}
 
 	if (staminaCurrent > global.staminaMax) // no going over stamina limit
 	staminaCurrent = global.staminaMax;
@@ -134,33 +110,11 @@ function playerStatsUpdate()
 	checkXP()
 	checkHealth()
 	gainStamina()
-}
-
-
-// Weapons
-function WeaponChecks()
-{
-	if scrollUp
-	{
-		class = Weapon.MELEE
-	}
 	
-	if scrollDown
-	{
-		class = Weapon.RANGED
-	}
+	//Dynamic attack damage
+	attackDamage = (strength * swordPower)
 }
 
-
-function UpdateAccessories()
-{
-	function MagnetAccessory(_true = false)
-	{
-		if _true == true
-		collectionDistance = 52
-		else collectionDistance = 36
-	}
-}
 
 function debuffDictionary()
 {
@@ -187,21 +141,28 @@ function debuffDictionary()
 	}
 }
 
+// Weapons
+function WeaponChecks()
+{
+	if (swordPower > 0)
+	equippedWeapon = Weapon.MELEE
+	else
+	equippedWeapon = noone
+}
 
 function WeaponDictionary()
 {
-	switch (class)
+	switch (equippedWeapon)
 	{
 		case Weapon.MELEE:
 		{
-			//show_debug_message("MELEE")
 			// 1. Reduce attack cooldown timer frame by frame
 			if (attackTimer > 0) && (state != PlayerState.ROLL)
 			{
 			    attackTimer--;
 			}
 
-			// 2. Perform the 360-degree attack when left click is pressed
+			// 2. attack when left click is pressed
 			if (attackPressed && attackTimer <= 0)
 			{
     
@@ -225,7 +186,7 @@ function WeaponDictionary()
 		case Weapon.RANGED:
 		{
 			// tick cd timer
-			if (attackTimer > 0) && (state != PlayerState.ROLL)
+			if (attackTimer > 0) //&& (state != PlayerState.ROLL)
 			{
 			    attackTimer--;
 			}
@@ -238,15 +199,15 @@ function WeaponDictionary()
 			    attackTimer = attackRate;
     
 				// angle from player center to mouse cursor
-				var attackDirection = point_direction(x, y, mouse_x, mouse_y);
+				var attackDirection = point_direction(x, y - 6, mouse_x, mouse_y);
     
 				// spawn bullet
-				var myAttack = instance_create_layer(x, y, "Attacks", objRangedAttackBullet);
+				var rangedAttack = instance_create_layer(x, y - 6, "Attacks", objRangedAttackBullet);
     
 
-				myAttack.image_angle = attackDirection;
-				myAttack.direction = attackDirection;
-				myAttack.speed = 3
+				rangedAttack.image_angle = attackDirection;
+				rangedAttack.direction = attackDirection;
+				rangedAttack.speed = 3 //default
 			}
 		}
 		break;

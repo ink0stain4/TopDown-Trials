@@ -1,3 +1,5 @@
+//objBasicAttackHitbox step
+
 depth = objPlayer.depth + 1
 
 var _hitList = ds_list_create();
@@ -17,11 +19,12 @@ for (var i = 0; i < _instance_amount; ++i)
 	
 	if asset_has_tags(_target.object_index, "Damageable", asset_object)
 	{
+		if variable_instance_exists(_target.id, "hurt")
 		_target.hurt = true;
 	
 		with (_target)
 		{
-			applyDamageFromPlayer()
+			applyDamageFromPlayer(objPlayer.attackDamage)
 			audio_play_sound(sndEnemyHurt, 1, false, 1, 0, random_range(0.8, 1.2))
 		}
 	}

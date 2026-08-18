@@ -1,0 +1,2 @@
+if (hovered)
+dragging = true

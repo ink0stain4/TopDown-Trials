@@ -14,17 +14,18 @@ if objPlayer.staggered // statemachine change this to just a state called "stagg
 }
 
 
-if !global.debug
-exit
-
-draw_set_font(fontSmall)
-draw_text_ext_colour(
-					text_padding_x + healthbarX + sprite_get_width(sprite_index),
-					healthbarY, (string(objPlayer.healthCurrent)),
-					0.5,
-					32,
-					c_white,
-					c_white,
-					c_white,
-					c_white,
-					1)
+if global.debug
+{
+	draw_set_halign(fa_left)
+	draw_set_font(fontSmall)
+	draw_text_ext_colour(
+						text_padding_x + healthbarX + sprite_get_width(sprite_index),
+						healthbarY, (string(objPlayer.healthCurrent)),
+						0.5,
+						32,
+						c_white,
+						c_white,
+						c_white,
+						c_white,
+						1)
+}

@@ -1,0 +1,1 @@
+objPlayer.equipmentOpen = false

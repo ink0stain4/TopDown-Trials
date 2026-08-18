@@ -40,6 +40,7 @@
   "spriteMaskId":null,
   "tags":[
     "Collectable",
+    "Pullable",
   ],
   "visible":true,
 }
